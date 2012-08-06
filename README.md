@@ -1,7 +1,7 @@
 PolyDataView: a better polyfill for DataView
 ============================================
 
-PolyDataView is a browser polyfill for [Dataview](http://www.khronos.org/registry/typedarray/specs/latest/#8), 
+PolyDataView is a browser polyfill for [DataView](http://www.khronos.org/registry/typedarray/specs/latest/#8), 
 part of the Khronos Typed Array specification. It is about twice as fast as other DataView polyfills out 
 there, and has zero dependencies.
 
