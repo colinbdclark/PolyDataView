@@ -1,0 +1,3 @@
+[submodule "benchmarks/third-party/sheep"]
+	path = benchmarks/third-party/sheep
+	url = git://github.com/colinbdclark/sheep.js.git
