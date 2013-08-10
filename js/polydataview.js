@@ -22,7 +22,8 @@
 (function () {
     "use strict";
 
-    var nativeDataView = typeof (window.DataView) !== "undefined" ? window.DataView : undefined; 
+    var g = typeof (window) !== "undefined" ? window : typeof (self) !== "undefined" ? self : module.exports;
+    var nativeDataView = typeof (g.DataView) !== "undefined" ? g.DataView : undefined; 
     
     var isHostLittleEndian = (function () {
         var endianTest = new ArrayBuffer(4),
@@ -139,7 +140,7 @@
             }
             
             that.offsetState = o + (len * w);
-            var arrayType = window["Uint" + (w * 8) + "Array"];
+            var arrayType = g["Uint" + (w * 8) + "Array"];
             
             if (len > 1 && isHostLittleEndian === isL) {
                 return new arrayType(that.buffer, o, len);
@@ -187,7 +188,7 @@
             }
             
             that.offsetState = o + (len * w);
-            var arrayType = window["Int" + (w * 8) + "Array"];
+            var arrayType = g["Int" + (w * 8) + "Array"];
                         
             // If the host's endianness matches the file's, just use a typed array view directly.
             if (len > 1 && isHostLittleEndian === isL) {
@@ -234,7 +235,7 @@
         that.getFloats = function (len, w, o, isL, array) {
             var bits = w * 8,
                 getterName = "getFloat" + bits,
-                arrayType = window["Float" + bits + "Array"],
+                arrayType = g["Float" + bits + "Array"],
                 i;
             
             // If the host's endianness matches the file's, just use a typed array view directly.
@@ -447,7 +448,7 @@
                 getterName = "get" + typeSize,
                 i;
                 
-            array = array || new window[typeSize + "Array"](len);
+            array = array || new g[typeSize + "Array"](len);
             o = typeof (o) === "number" ? o : that.offsetState;
             
             for (i = 0; i < len; i++) {
@@ -557,5 +558,6 @@
         return that;
     };
     
-    window.PolyDataView = nativeDataView ? wrappedDataView : PolyDataView;
+    g.PolyDataView = nativeDataView ? wrappedDataView : PolyDataView;
+
 }());
