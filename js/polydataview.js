@@ -19,10 +19,12 @@
  *  - Finish unit tests for getFloat80() and the various array getters.
  */
  
+
 (function () {
     "use strict";
-
-    var g = typeof (window) !== "undefined" ? window : typeof (self) !== "undefined" ? self : module.exports;
+    
+    var g = typeof (window) !== "undefined" ? window : typeof (self) !== "undefined" ? self : global;
+    
     var nativeDataView = typeof (g.DataView) !== "undefined" ? g.DataView : undefined; 
     
     var isHostLittleEndian = (function () {
